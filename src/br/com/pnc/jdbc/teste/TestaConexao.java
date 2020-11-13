@@ -8,7 +8,6 @@ import br.com.pnc.jdbc.ConnectionFactory;
 public class TestaConexao {
 
     public static void main(String[] args) throws SQLException {
-	// TODO Auto-generated method stub
 	Connection conn = new ConnectionFactory().getConnection();
 	System.out.println("Conexão aberta!");
 	conn.close();

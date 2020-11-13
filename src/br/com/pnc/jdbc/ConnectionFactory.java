@@ -9,7 +9,6 @@ public class ConnectionFactory {
 	try {
 	    return DriverManager.getConnection("jdbc:sqlite:pnc.db");
 	} catch (SQLException e) {
-	    // TODO: handle exception
 	    throw new RuntimeException(e);
 	}
     }
