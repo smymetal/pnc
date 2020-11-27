@@ -1,13 +1,18 @@
 package br.com.pnc.gui;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.AbstractButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import br.com.pnc.gui.painel.TestePainel;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -26,6 +31,7 @@ public class TelaPrincipal extends JFrame {
     private static final long serialVersionUID = -6759198433135382698L;
 
     private JPanel contentPane;
+    private LayPanel paineis;
 
     /**
      * Create the frame.
@@ -45,8 +51,8 @@ public class TelaPrincipal extends JFrame {
 	setTitle("Product NCM Check version 0.1.2");
 	setFont(new Font("Tahoma", Font.PLAIN, 11));
 	
-	LayPanel painel = new LayPanel();
-	getContentPane().add(painel);
+	paineis = new LayPanel();
+	getContentPane().add(paineis);
 	
 	JMenuBar menuBar = new JMenuBar();
 	setJMenuBar(menuBar);
@@ -69,6 +75,10 @@ public class TelaPrincipal extends JFrame {
 	JMenu mnFerramentas = new JMenu("Ferramentas");
 	menuBar.add(mnFerramentas);
 	
+	JMenuItem mntmSearchNcm = new JMenuItem("Pesquisa por NCM");
+	mntmSearchNcm.addActionListener(menuActionListener);
+	mnFerramentas.add(mntmSearchNcm);
+	
 	JMenu mnSobre = new JMenu("Sobre");
 	menuBar.add(mnSobre);
 
@@ -85,7 +95,11 @@ public class TelaPrincipal extends JFrame {
 		case "Abrir":
 		    showTelaTeste();
 		    break;
-		case "MP Layout":
+		case "Pesquisa por NCM":
+		    
+		    TestePainel p1 = new TestePainel();
+		    paineis.mudaPainel(p1);
+		    //showPainelWin(TelaPrincipal.this ,p1 , "Teste Outra janela", new Dimension(480, 200));
 
 		    break;
 		case "AloeBaf Layout":
@@ -117,6 +131,17 @@ public class TelaPrincipal extends JFrame {
 		}
 	    }
 	};
+	
+	private void showPainelWin(JFrame parentFrame, JPanel painel, String tittle, Dimension size) {	    
+	    
+	    final JDialog df = new JDialog(parentFrame, tittle, true);
+	    df.setBounds(10, 10, 480, 240);
+	    df.setPreferredSize(size);
+	    df.setLocationRelativeTo(parentFrame);
+	    df.getContentPane().add(painel);
+	    df.pack();
+	    df.setVisible(true);
+	}
 	
 	private void showTelaTeste() {
 	    TelaTeste tt = new TelaTeste();
