@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import br.com.pnc.gui.painel.SearchNcmForm;
 import br.com.pnc.gui.painel.TestePainel;
 
 import javax.swing.JMenuBar;
@@ -48,7 +49,7 @@ public class TelaPrincipal extends JFrame {
 	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	setContentPane(contentPane);
 	contentPane.setLayout(null);
-	setTitle("Product NCM Check version 0.1.2");
+	setTitle("Product NCM Check version 0.1.6");
 	setFont(new Font("Tahoma", Font.PLAIN, 11));
 	
 	paineis = new LayPanel();
@@ -89,17 +90,18 @@ public class TelaPrincipal extends JFrame {
 	 */
 	ActionListener menuActionListener = new ActionListener() {
 	    public void actionPerformed(ActionEvent actionEvent) {
-		AbstractButton aButton = (AbstractButton) actionEvent.getSource();		
-		
+		AbstractButton aButton = (AbstractButton) actionEvent.getSource();
+
 		switch (aButton.getText()) {
 		case "Abrir":
-		    showTelaTeste();
+		    TestePainel p1 = new TestePainel();
+		    showPainelWin(TelaPrincipal.this ,p1 , "Teste Outra janela", new Dimension(480, 200));
+		    //showTelaTeste();
 		    break;
 		case "Pesquisa por NCM":
 		    
-		    TestePainel p1 = new TestePainel();
-		    paineis.mudaPainel(p1);
-		    //showPainelWin(TelaPrincipal.this ,p1 , "Teste Outra janela", new Dimension(480, 200));
+		    SearchNcmForm ncmForm = new SearchNcmForm();
+		    paineis.mudaPainel(ncmForm);
 
 		    break;
 		case "AloeBaf Layout":
